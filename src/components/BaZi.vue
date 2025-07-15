@@ -6,112 +6,112 @@
       
       <div class="main-layout">
         <!-- 左侧输入区域 -->
-        <div class="input-section">
-          <div class="input-card">
-            <h3>出生信息</h3>
-            <form @submit.prevent="calculateBaZi" class="form">
-              <div class="form-group">
-                <label>姓名</label>
-                <input v-model="form.name" type="text" placeholder="请输入您的姓名" required>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label>性别</label>
-                  <select v-model="form.gender" required>
-                    <option value="">请选择</option>
-                    <option value="male">男</option>
-                    <option value="female">女</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <label>出生年份</label>
-                  <select v-model="form.year" required>
-                    <option value="">请选择年份</option>
-                    <option v-for="year in years" :key="year" :value="year">{{ year }}年</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label>出生月份</label>
-                  <select v-model="form.month" required>
-                    <option value="">请选择月份</option>
-                    <option v-for="month in 12" :key="month" :value="month">{{ month }}月</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <label>出生日期</label>
-                  <select v-model="form.day" required>
-                    <option value="">请选择日期</option>
-                    <option v-for="day in getDaysInMonth()" :key="day" :value="day">{{ day }}日</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label>出生时辰</label>
-                  <select v-model="form.hour" required>
-                    <option value="">请选择时辰</option>
-                    <option v-for="(time, index) in timeOptions" :key="index" :value="index">{{ time }}</option>
-                  </select>
-                </div>
-              </div>
-              
-              <button type="submit" class="calculate-btn" :disabled="loading">
-                {{ loading ? '计算中...' : '开始算命' }}
-              </button>
-            </form>
-          </div>
-        </div>
-        
-        <!-- 右侧结果区域 -->
-        <div class="result-section">
-          <div v-if="result" class="result-card">
-            <h3>{{ form.name }} 的八字命盘</h3>
+      <div class="input-section">
+        <div class="input-card">
+          <h3>出生信息</h3>
+          <form @submit.prevent="calculateBaZi" class="form">
+            <div class="form-group">
+              <label>姓名</label>
+              <input v-model="form.name" type="text" placeholder="请输入您的姓名" required>
+            </div>
             
-            <div class="bazi-chart">
-              <div class="bazi-pillars">
-                <div class="pillar">
-                  <div class="pillar-title">年柱</div>
-                  <div class="gan">{{ result.yearGan }}</div>
-                  <div class="zhi">{{ result.yearZhi }}</div>
-                </div>
-                <div class="pillar">
-                  <div class="pillar-title">月柱</div>
-                  <div class="gan">{{ result.monthGan }}</div>
-                  <div class="zhi">{{ result.monthZhi }}</div>
-                </div>
-                <div class="pillar">
-                  <div class="pillar-title">日柱</div>
-                  <div class="gan">{{ result.dayGan }}</div>
-                  <div class="zhi">{{ result.dayZhi }}</div>
-                </div>
-                <div class="pillar">
-                  <div class="pillar-title">时柱</div>
-                  <div class="gan">{{ result.hourGan }}</div>
-                  <div class="zhi">{{ result.hourZhi }}</div>
-                </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>性别</label>
+                <select v-model="form.gender" required>
+                  <option value="">请选择</option>
+                  <option value="male">男</option>
+                  <option value="female">女</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label>出生年份</label>
+                <select v-model="form.year" required>
+                  <option value="">请选择年份</option>
+                  <option v-for="year in years" :key="year" :value="year">{{ year }}年</option>
+                </select>
               </div>
             </div>
             
-            <div class="analysis">
-              <h4>命理分析</h4>
-              <div class="analysis-item">
-                <strong>五行属性：</strong>{{ result.element }}
+            <div class="form-row">
+              <div class="form-group">
+                <label>出生月份</label>
+                <select v-model="form.month" required>
+                  <option value="">请选择月份</option>
+                  <option v-for="month in 12" :key="month" :value="month">{{ month }}月</option>
+                </select>
               </div>
-              <div class="analysis-item">
-                <strong>性格特点：</strong>{{ result.personality }}
+              
+              <div class="form-group">
+                <label>出生日期</label>
+                <select v-model="form.day" required>
+                  <option value="">请选择日期</option>
+                  <option v-for="day in getDaysInMonth()" :key="day" :value="day">{{ day }}日</option>
+                </select>
               </div>
-              <div class="analysis-item">
-                <strong>运势分析：</strong>{{ result.fortune }}
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>出生时辰</label>
+                <select v-model="form.hour" required>
+                  <option value="">请选择时辰</option>
+                  <option v-for="(time, index) in timeOptions" :key="index" :value="index">{{ time }}</option>
+                </select>
               </div>
-              <div class="analysis-item">
-                <strong>建议：</strong>{{ result.advice }}
+            </div>
+            
+            <button type="submit" class="calculate-btn" :disabled="loading">
+              {{ loading ? '计算中...' : '开始算命' }}
+            </button>
+          </form>
+        </div>
+      </div>
+      
+        <!-- 右侧结果区域 -->
+        <div class="result-section">
+          <div v-if="result" class="result-card">
+          <h3>{{ form.name }} 的八字命盘</h3>
+          
+          <div class="bazi-chart">
+            <div class="bazi-pillars">
+              <div class="pillar">
+                <div class="pillar-title">年柱</div>
+                <div class="gan">{{ result.yearGan }}</div>
+                <div class="zhi">{{ result.yearZhi }}</div>
+              </div>
+              <div class="pillar">
+                <div class="pillar-title">月柱</div>
+                <div class="gan">{{ result.monthGan }}</div>
+                <div class="zhi">{{ result.monthZhi }}</div>
+              </div>
+              <div class="pillar">
+                <div class="pillar-title">日柱</div>
+                <div class="gan">{{ result.dayGan }}</div>
+                <div class="zhi">{{ result.dayZhi }}</div>
+              </div>
+              <div class="pillar">
+                <div class="pillar-title">时柱</div>
+                <div class="gan">{{ result.hourGan }}</div>
+                <div class="zhi">{{ result.hourZhi }}</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="analysis">
+            <h4>命理分析</h4>
+            <div class="analysis-item">
+              <strong>五行属性：</strong>{{ result.element }}
+            </div>
+            <div class="analysis-item">
+              <strong>性格特点：</strong>{{ result.personality }}
+            </div>
+            <div class="analysis-item">
+              <strong>运势分析：</strong>{{ result.fortune }}
+            </div>
+            <div class="analysis-item">
+              <strong>建议：</strong>{{ result.advice }}
               </div>
             </div>
           </div>

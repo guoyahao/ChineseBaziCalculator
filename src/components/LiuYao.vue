@@ -6,15 +6,15 @@
       
       <div class="main-layout">
         <!-- 左侧摇卦区域 -->
-        <div class="divination-section">
-          <div class="input-card">
-            <h3>摇卦占卜</h3>
-            
-            <div class="question-section">
-              <div class="form-group">
-                <label>您的姓名</label>
-                <input v-model="form.name" type="text" placeholder="请输入您的姓名" required>
-              </div>
+      <div class="divination-section">
+        <div class="input-card">
+          <h3>摇卦占卜</h3>
+          
+          <div class="question-section">
+            <div class="form-group">
+              <label>您的姓名</label>
+              <input v-model="form.name" type="text" placeholder="请输入您的姓名" required>
+            </div>
               
               <div class="form-group">
                 <label>占卜类型</label>
@@ -25,9 +25,9 @@
                   </option>
                 </select>
               </div>
-              
-              <div class="form-group">
-                <label>占卜问题</label>
+            
+            <div class="form-group">
+              <label>占卜问题</label>
                 <textarea v-model="form.question" placeholder="请详细描述您想要占卜的具体问题" rows="3" required></textarea>
               </div>
               
@@ -38,114 +38,114 @@
                   <input v-model="form.time" type="time" />
                   <button @click="setCurrentTime" class="current-time-btn">当前时间</button>
                 </div>
-              </div>
-            </div>
-            
-            <div class="coin-section">
-              <h4>摇卦方式</h4>
-              <p class="instruction">请连续摇卦6次，每次点击下方按钮模拟投掷三枚铜钱</p>
-              
-              <div class="coins-display" v-if="currentThrow.length > 0">
-                <div class="coin" v-for="(coin, index) in currentThrow" :key="index" :class="coin">
-                  {{ coin === 'heads' ? '字' : '背' }}
-                </div>
-              </div>
-              
-              <button 
-                @click="throwCoins" 
-                :disabled="loading || hexagram.length >= 6"
-                class="throw-btn"
-              >
-                {{ loading ? '摇卦中...' : `第${hexagram.length + 1}次摇卦` }}
-              </button>
-              
-              <div class="progress">
-                <div class="progress-bar" :style="{ width: (hexagram.length / 6) * 100 + '%' }"></div>
-              </div>
-              <p class="progress-text">进度: {{ hexagram.length }}/6</p>
-            </div>
-            
-            <div v-if="hexagram.length === 6" class="hexagram-display">
-              <h4>卦象生成</h4>
-              <div class="hexagram-lines">
-                <div 
-                  v-for="(line, index) in hexagram" 
-                  :key="index" 
-                  class="hexagram-line"
-                  :class="{ 'yang': line.type === 'yang', 'yin': line.type === 'yin', 'changing': line.changing }"
-                >
-                  <div class="line-visual">
-                    <span v-if="line.type === 'yang'" class="yang-line">━━━━━━</span>
-                    <span v-else class="yin-line">━━　━━</span>
-                    <span v-if="line.changing" class="changing-mark">○</span>
-                  </div>
-                  <span class="line-name">{{ getLineName(5 - index) }}</span>
-                </div>
-              </div>
-              
-              <button @click="interpretHexagram" class="interpret-btn" :disabled="interpreting">
-                {{ interpreting ? '解析中...' : '开始解卦' }}
-              </button>
             </div>
           </div>
+          
+          <div class="coin-section">
+            <h4>摇卦方式</h4>
+            <p class="instruction">请连续摇卦6次，每次点击下方按钮模拟投掷三枚铜钱</p>
+            
+            <div class="coins-display" v-if="currentThrow.length > 0">
+              <div class="coin" v-for="(coin, index) in currentThrow" :key="index" :class="coin">
+                {{ coin === 'heads' ? '字' : '背' }}
+              </div>
+            </div>
+            
+            <button 
+              @click="throwCoins" 
+              :disabled="loading || hexagram.length >= 6"
+              class="throw-btn"
+            >
+              {{ loading ? '摇卦中...' : `第${hexagram.length + 1}次摇卦` }}
+            </button>
+            
+            <div class="progress">
+              <div class="progress-bar" :style="{ width: (hexagram.length / 6) * 100 + '%' }"></div>
+            </div>
+            <p class="progress-text">进度: {{ hexagram.length }}/6</p>
+          </div>
+          
+          <div v-if="hexagram.length === 6" class="hexagram-display">
+            <h4>卦象生成</h4>
+            <div class="hexagram-lines">
+              <div 
+                v-for="(line, index) in hexagram" 
+                :key="index" 
+                class="hexagram-line"
+                :class="{ 'yang': line.type === 'yang', 'yin': line.type === 'yin', 'changing': line.changing }"
+              >
+                <div class="line-visual">
+                  <span v-if="line.type === 'yang'" class="yang-line">━━━━━━</span>
+                  <span v-else class="yin-line">━━　━━</span>
+                  <span v-if="line.changing" class="changing-mark">○</span>
+                </div>
+                <span class="line-name">{{ getLineName(5 - index) }}</span>
+              </div>
+            </div>
+            
+            <button @click="interpretHexagram" class="interpret-btn" :disabled="interpreting">
+              {{ interpreting ? '解析中...' : '开始解卦' }}
+            </button>
+          </div>
         </div>
-        
+      </div>
+      
         <!-- 右侧结果区域 -->
         <div class="result-section">
           <div v-if="result" class="result-card">
-            <h3>{{ form.name }} 的卦象解析</h3>
+          <h3>{{ form.name }} 的卦象解析</h3>
             <div class="divination-info">
               <p><strong>占卜类型：</strong>{{ getDivinationType() }}</p>
               <p><strong>占卜问题：</strong>{{ form.question }}</p>
               <p><strong>起卦时间：</strong>{{ form.date }} {{ form.time }}</p>
             </div>
-            
-            <div class="hexagram-info">
-              <div class="hexagram-name">
+          
+          <div class="hexagram-info">
+            <div class="hexagram-name">
                 <h4>第{{ result.hexagramNumber }}卦　{{ result.hexagramName }}</h4>
-                <p class="hexagram-description">{{ result.hexagramDescription }}</p>
+              <p class="hexagram-description">{{ result.hexagramDescription }}</p>
                 <p class="trigram-info">上卦：{{ result.upperTrigram }}　下卦：{{ result.lowerTrigram }}</p>
                 <div v-if="result.changingLines.length > 0" class="changing-lines">
                   <strong>动爻：</strong>{{ result.changingLines.join('、') }}爻
                 </div>
-              </div>
-              
-              <div class="hexagram-visual-large">
-                <div 
-                  v-for="(line, index) in hexagram" 
-                  :key="index" 
-                  class="hexagram-line-large"
+            </div>
+            
+            <div class="hexagram-visual-large">
+              <div 
+                v-for="(line, index) in hexagram" 
+                :key="index" 
+                class="hexagram-line-large"
                   :class="{ 'yang': line.type === 'yang', 'yin': line.type === 'yin', 'changing': line.changing }"
-                >
-                  <span v-if="line.type === 'yang'" class="yang-line-large">━━━━━━━━━</span>
-                  <span v-else class="yin-line-large">━━━　　━━━</span>
+              >
+                <span v-if="line.type === 'yang'" class="yang-line-large">━━━━━━━━━</span>
+                <span v-else class="yin-line-large">━━━　　━━━</span>
                   <span v-if="line.changing" class="changing-mark-large">○</span>
                   <span class="line-position">{{ getLineName(5 - index) }}</span>
-                </div>
               </div>
             </div>
-            
-            <div class="interpretation">
-              <h4>卦象解释</h4>
-              <div class="interpretation-item">
-                <strong>总体运势：</strong>{{ result.overall }}
-              </div>
-              <div class="interpretation-item">
-                <strong>具体分析：</strong>{{ result.detailed }}
-              </div>
-              <div class="interpretation-item">
-                <strong>时机判断：</strong>{{ result.timing }}
-              </div>
-              <div class="interpretation-item">
-                <strong>行动建议：</strong>{{ result.advice }}
-              </div>
-              <div class="interpretation-item">
-                <strong>注意事项：</strong>{{ result.warning }}
-              </div>
+          </div>
+          
+          <div class="interpretation">
+            <h4>卦象解释</h4>
+            <div class="interpretation-item">
+              <strong>总体运势：</strong>{{ result.overall }}
             </div>
-            
-            <div class="reset-section">
-              <button @click="resetDivination" class="reset-btn">重新占卜</button>
+            <div class="interpretation-item">
+              <strong>具体分析：</strong>{{ result.detailed }}
+            </div>
+            <div class="interpretation-item">
+              <strong>时机判断：</strong>{{ result.timing }}
+            </div>
+            <div class="interpretation-item">
+              <strong>行动建议：</strong>{{ result.advice }}
+            </div>
+            <div class="interpretation-item">
+              <strong>注意事项：</strong>{{ result.warning }}
+            </div>
+          </div>
+          
+          <div class="reset-section">
+            <button @click="resetDivination" class="reset-btn">重新占卜</button>
             </div>
           </div>
           
