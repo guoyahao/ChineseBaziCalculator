@@ -122,14 +122,14 @@ suan/
 ### 微信联系
 扫描下方二维码添加微信：
 
-![微信二维码](public/qrcode.png)
+<img src="public/qrcode.png" alt="微信二维码" width="200">
 
 
 ### 💰 请我喝咖啡
 
 如果您觉得这个项目对您有帮助，或者算命结果很准确，欢迎请我喝杯咖啡！您的支持是我持续优化和更新的动力。
 
-![微信二维码](public/pay.jpg)
+<img src="public/pay.jpg" alt="收款二维码" width="200" >
 
 感谢您的支持！🙏
 
