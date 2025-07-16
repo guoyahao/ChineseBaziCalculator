@@ -7,13 +7,15 @@ import LiuYao from './components/LiuYao.vue'
 import Calendar from './components/Calendar.vue'
 import LiuYaoFishing from './components/LiuYaoFishing.vue'
 import EnhancedLiuYao from './components/EnhancedLiuYao.vue'
+import ZiWei from './components/ZiWei.vue'
 const routes = [
   { path: '/', component: Home },
   { path: '/bazi', component: BaZi },
   { path: '/liuyao', component: LiuYao },
   { path: '/calendar', component: Calendar },
   { path: '/enhanced-liuyao', component: EnhancedLiuYao },
-  { path: '/fishing-liuyao', component: LiuYaoFishing }
+  { path: '/fishing-liuyao', component: LiuYaoFishing },
+  { path: '/ziwei', component: ZiWei }
 ]
 
 const router = createRouter({

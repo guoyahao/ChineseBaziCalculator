@@ -10,16 +10,21 @@
           <h3>八字福运</h3>
           <p>天官赐福，根据出生年月日时，推算福运走势</p>
         </div>
+        <div class="feature-card highlighted" @click="$router.push('/ziwei')">
+          <div class="feature-icon">⭐</div>
+          <h3>紫微斗数</h3>
+          <p>紫微星盘排布，洞察命运格局，指引福运方向</p>
+          <div class="new-badge">NEW</div>
+        </div>
         <div class="feature-card" @click="$router.push('/enhanced-liuyao')">
           <div class="feature-icon">☯️</div>
           <h3>六爻占福增强版</h3>
           <p>多种起卦方式：时间、姓名、数字、手动摇卦</p>
         </div>
-        <div class="feature-card highlighted" @click="$router.push('/fishing-liuyao')">
+        <div class="feature-card" @click="$router.push('/fishing-liuyao')">
           <div class="feature-icon">🎣</div>
           <h3>六爻钓鱼占卜</h3>
           <p>专业钓鱼占卜，九宫八卦图指引最佳钓点</p>
-          <div class="new-badge">NEW</div>
         </div>
         <div class="feature-card" @click="$router.push('/calendar')">
           <div class="feature-icon">📅</div>
@@ -70,6 +75,10 @@
         <div class="intro-card">
           <h4>🏮 八字福运</h4>
           <p>天官赐福，八字福运是根据一个人出生的年、月、日、时所对应的天干地支来推断福运走向的传统命理学方法。</p>
+        </div>
+        <div class="intro-card">
+          <h4>⭐ 紫微斗数</h4>
+          <p>紫微斗数是中华传统命理学的瑰宝，通过星盘排布精确分析命运格局，洞察人生运势，指引福运方向。</p>
         </div>
         <div class="intro-card">
           <h4>🎲 六爻占福</h4>

@@ -6,10 +6,15 @@
         <div class="nav-menu">
           <router-link to="/" class="nav-link">首页</router-link>
           <router-link to="/bazi" class="nav-link">八字福运</router-link>
+          <router-link to="/ziwei" class="nav-link">紫微斗数</router-link>
           <router-link to="/liuyao" class="nav-link">六爻占福</router-link>
           <router-link to="/enhanced-liuyao" class="nav-link">六爻增强版</router-link>
           <router-link to="/fishing-liuyao" class="nav-link">六爻钓鱼</router-link>
           <router-link to="/calendar" class="nav-link">福运万年历</router-link>
+          <a href="https://github.com/guoyahao/ChineseBaziCalculator" target="_blank" class="nav-link github-link">
+            <span class="github-icon">⭐</span>
+            GitHub
+          </a>
         </div>
       </div>
     </nav>
@@ -18,7 +23,13 @@
     </main>
     <footer class="footer">
       <div class="footer-content">
-        <p>Copyright © 2020.北京天启博创科技有限公司 京ICP备20026966号-1</p>
+        <p>
+          Copyright © 2020.北京天启博创科技有限公司 京ICP备20026966号-1 
+          <span class="separator">|</span> 
+          <a href="https://github.com/guoyahao/ChineseBaziCalculator" target="_blank" class="footer-github">
+            🌟 开源项目
+          </a>
+        </p>
       </div>
     </footer>
   </div>
@@ -58,7 +69,7 @@ export default {
 .navbar {
   background: rgba(139, 69, 19, 0.2);
   backdrop-filter: blur(15px);
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -67,12 +78,12 @@ export default {
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .nav-logo {
@@ -91,16 +102,18 @@ export default {
 
 .nav-menu {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .nav-link {
   color: #fff8dc;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
   transition: all 0.3s ease;
   text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.6);
+  font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -109,6 +122,40 @@ export default {
   color: #ffd700;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.github-link {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #e6e6e6 !important;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem !important;
+  padding: 0.5rem 0.7rem !important;
+}
+
+.github-link:hover {
+  background: rgba(0, 0, 0, 0.4) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.github-icon {
+  font-size: 1.1rem;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 }
 
 .main-content {
@@ -139,14 +186,70 @@ export default {
   opacity: 0.9;
 }
 
-@media (max-width: 768px) {
+.separator {
+  margin: 0 0.8rem;
+  opacity: 0.6;
+}
+
+.footer-github {
+  color: #ffd700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.2rem 0.5rem;
+  border-radius: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footer-github:hover {
+  color: #ffed4e;
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
   .nav-container {
-    flex-direction: column;
-    gap: 1rem;
+    max-width: 100%;
+    padding: 0 1rem;
   }
   
   .nav-menu {
     gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .github-link {
+    font-size: 0.85rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .nav-menu {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .github-link {
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.6rem !important;
   }
   
   .main-content {
@@ -159,6 +262,17 @@ export default {
   
   .footer-content p {
     font-size: 0.8rem;
+    line-height: 1.6;
+  }
+  
+  .separator {
+    display: block;
+    margin: 0.3rem 0;
+  }
+  
+  .footer-github {
+    display: inline-block;
+    margin-top: 0.3rem;
   }
 }
 </style> 
