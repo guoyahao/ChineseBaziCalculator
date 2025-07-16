@@ -712,8 +712,15 @@ export default {
         return baseNames.map(name => `${scopePrefix[scope]}${name}`)
       }
       
+      // 计算年龄（虚岁）
+      const birthYear = new Date(this.userConfig.birthday).getFullYear()
+      const nominalAge = year - birthYear + 1 // 虚岁计算
+      
       // 直接赋值（Vue 3中已经是响应式的）
       this.horoscope = {
+        age: {
+          nominalAge: nominalAge // 虚岁
+        },
         decadal: { 
           index: decadalIndex,
           year: Math.floor((year - 2000) / 10) * 10 + 2000,
@@ -810,9 +817,15 @@ export default {
     },
     
     calculateAge() {
+      // 优先使用horoscope中的年龄数据（虚岁）
+      if (this.horoscope?.age?.nominalAge) {
+        return this.horoscope.age.nominalAge
+      }
+      
+      // 备用计算：基于当前年份计算虚岁
       const birthYear = new Date(this.userConfig.birthday).getFullYear()
-      const currentYear = 2036 // 按照参考图的年份
-      return currentYear - birthYear + 1
+      const currentYear = new Date().getFullYear() // 使用真实的当前年份
+      return currentYear - birthYear + 1 // 虚岁算法：当前年份-出生年份+1
     },
     
     // 格式化阳历日期
